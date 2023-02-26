@@ -16,7 +16,7 @@ app = Celery(
 
 @app.task
 def task_add_weather(city: str) -> WeatherIn:
-    url = f"https://api.openweathermap.org/data/2.5/weather?q={city},uk&APPID=56358367861cbe27744e5006e5245eda"
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={city},uk&units=metric&APPID=56358367861cbe27744e5006e5245eda"
     response = requests.get(url).json()
     logger.info(f'response:{response}')
     weather = WeatherIn(

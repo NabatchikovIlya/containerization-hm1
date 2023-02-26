@@ -19,13 +19,13 @@ def crud_add_weather(weather: WeatherIn):
     return db_weather
 
 
-def crud_get_weather(city: str):
+def crud_get_weather(city: str, num_rows: int = 10):
     with db_context() as db:
         weather = (
             db.query(Weather)
             .filter(Weather.city == city)
             .order_by(Weather.date.desc())
-            .limit(7)
+            .limit(num_rows)
             .all()
         )
     if weather:
